@@ -1,0 +1,32 @@
+{
+  "dataSet": [
+    {
+      "productName" : "MacBook",
+      "imageURL" : "macbook_1-47x47.jpg",
+      "dollarPrice" : "602.00",
+      "poundPrice" : "454.10",
+      "euroPrice" : "518.16"
+    },
+    {
+      "productName" : "iPhone",
+      "imageURL" : "iphone_1-228x228.jpg",
+      "dollarPrice" : "123.20",
+      "poundPrice" : "92.93",
+      "euroPrice" : "106.04"
+    },
+    {
+      "productName" : "Apple Cinema 30\"",
+      "imageURL" : "apple_cinema_30-228x228.jpg",
+      "dollarPrice" : "110.00",
+      "poundPrice" : "82.98",
+      "euroPrice" : "94.68"
+    },
+    {
+      "productName" : "Samsung Galaxy Tab 10.1",
+      "imageURL" : "samsung_tab_1-228x228.jpg",
+      "dollarPrice" : "241.99",
+      "poundPrice" : "182.54",
+      "euroPrice" : "208.29"
+    }
+  ]
+}

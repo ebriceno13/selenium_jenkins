@@ -1,0 +1,57 @@
+version: "3"
+services:
+  hub:
+    image: selenium/hub
+    ports:
+      - "4444:4444"
+  chrome:
+    image: selenium/node-chrome
+    shm_size: "1g"
+    depends_on:
+      - hub
+    environment:
+      - SE_EVENT_BUS_HOST=hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    volumes:
+      - ./downloads:/home/seluser/Downloads
+  firefox:
+    image: selenium/node-firefox
+    shm_size: "1g"
+    depends_on:
+      - hub
+    environment:
+      - SE_EVENT_BUS_HOST=hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    volumes:
+      - ./downloads:/home/seluser/Downloads
+  firefoxrunnersearch:
+    image: ebriceno13/testbuild
+    depends_on:
+      - firefox
+      - chrome
+      - hub
+    environment:
+      - HUB_HOST=hub
+      - BROWSER=firefox
+      - MODULE=SearchSuite.xml
+  firefoxrunneraccount:
+    image: ebriceno13/testbuild
+    depends_on:
+      - firefox
+      - chrome
+      - hub
+    environment:
+      - HUB_HOST=hub
+      - BROWSER=firefox
+      - MODULE=AccountSuite.xml
+  chromerunner:
+    image: ebriceno13/testbuild
+    depends_on:
+      - firefox
+      - chrome
+      - hub
+    environment:
+      - HUB_HOST=hub
+      - MODULE=SearchSuite.xml
