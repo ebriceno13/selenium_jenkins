@@ -1,33 +1,24 @@
 pipeline {
-    agent none
+    agent any
     stages {
         stage('Build Jar') {
-            agent {
-                docker {
-                    image 'maven:3-alpine'
-                    args '-v $HOME/.m2:/root/.m2'
-                }
-            }
             steps {
                 sh 'mvn clean package -DskipTests'
             }
         }
         stage('Build Image') {
             steps {
-                script {
-                    app = docker.build("ebriceno13/testbuild")
-                }
+                    sh "docker build -t=ebriceno13/testbuild ."
             }
         }
         stage('Push Image') {
             steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub2') {
-                        app.push("${BUILD_NUMBER}")
-                        app.push("latest")
-                    }
-                }
-            }
+                     withCredentials([usernamePassword(credentialsId: 'dockerhub2', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                     //sh
+                     bat "docker login --username=${user} --password=${pass}"
+                     bat "docker push ebriceno13/testbuild:latest"
+                            }
+                   }
         }
     }
 }
