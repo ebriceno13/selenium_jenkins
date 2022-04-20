@@ -15,8 +15,8 @@ pipeline {
             steps {
                      withCredentials([usernamePassword(credentialsId: 'dockerhub2', passwordVariable: 'pass', usernameVariable: 'user')]) {
                      //sh
-                     bat "docker login --username=${user} --password=${pass}"
-                     bat "docker push ebriceno13/testbuild:latest"
+                     sh "docker login --username=${user} --password=${pass}"
+                     sh "docker push ebriceno13/testbuild:latest"
                             }
                    }
         }
