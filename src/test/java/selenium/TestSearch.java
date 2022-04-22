@@ -11,7 +11,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pojo.SearchData;
 
-
+//esto es un comentario
 public class TestSearch extends BaseClass {
     @Test
     @Parameters({"searchCriteria", "expectedResult"})
