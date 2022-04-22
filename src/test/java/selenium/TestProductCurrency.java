@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pojo.ProductsData;
 
+//esto es un comment
 public class TestProductCurrency extends BaseClass{
 /*
     Caso 3 del Proyecto
